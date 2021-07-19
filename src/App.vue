@@ -3,19 +3,31 @@
     <div id="nav">
       <!-- <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> -->
+      <transition name="el-fade-in-linear">
+        <router-view/>
+      </transition>
+      <Footer />
     </div>
-    <transition name="el-fade-in-linear">
-      <router-view/>
-    </transition>
   </div>
 </template>
+<script>
+import Footer from '@/components/layout/Footer'
 
+export default {
+  name: "home",
+  components: {
+    Footer
+  }
+};
+</script>
+components: {
+HelloWorld
+}
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
   color: #2c3e50;
 }
 

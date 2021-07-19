@@ -18,7 +18,7 @@
                     <span class="card-desc">包含JD, 联通的cookie在线获取</span>
                   </div>
                   <div class="card-footer">
-                    <el-link type="primary" :underline="false">点击进入<i class="el-icon-right"></i></el-link>
+                    <el-link type="primary" :underline="false">点击进入<i class="el-icon-arrow-right"></i></el-link>
                   </div>
                 </el-card>
               </router-link>
@@ -42,7 +42,7 @@
                   </span>
                   </div>
                   <div class="card-footer">
-                    <el-link type="primary" :underline="false">点击进入<i class="el-icon-right"></i></el-link>
+                    <el-link type="info" :underline="false">点击进入<i class="el-icon-arrow-right"></i></el-link>
                   </div>
                 </el-card>
               </router-link>
@@ -90,32 +90,32 @@ ul {
 .card-title {
   color: #303133;
   font-weight: bold;
-  display: block;
   padding: 2px;
 }
 
 .card-desc {
   color: #909399;
-  font-size: 12px;
+  font-size: 8px;
   display: block;
   padding: 2px;
 }
 
 .card-body {
-  padding: 14px;
+  padding: 0 8px ;
   margin-top: 16px;
   height: 96px;
 }
 
 .card-footer {
   height: 32px;
-  margin: 8px 16px;
+  margin-right: 8px;
+  font-size: 4px !important;
   float: right;
 }
 
 .img-div {
   width: 100%;
-  height: 120px;
+  height: 168px;
   text-align: center;
 }
 
