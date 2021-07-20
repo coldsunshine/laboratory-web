@@ -86,10 +86,12 @@ export default {
           let paramStr = paramStrs[i];
           let type = String(paramStr.match(regx));
           let param = paramStr.replace(type, "");
-          type = type.substring(1, type.length - 1);
+          type = type.indexOf("(") != -1 ? type.substring(1, type.length - 1) : "null";
 
-          if (type == "String" || type == "Timestamp") {
+          if (type == "String" || type == "Timestamp" || type == "Date") {
             sql = sql.replace("?", "'" + param.trim() + "'");
+          } else if (type == "null") {
+            sql = sql.replace(  "?", "null");
           } else {
             // 数值类型
             sql = sql.replace("?", param.trim());
