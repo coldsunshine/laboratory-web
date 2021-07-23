@@ -3,7 +3,8 @@ import Router from "vue-router";
 
 import Index from "./views/index/index";
 import Cookie from "./views/cookie";
-import Tools from "./views/tools";
+import devTool from "./views/devtool";
+import Tool from "./views/tool/index";
 
 Vue.use(Router);
 
@@ -28,11 +29,19 @@ export default new Router({
       }
     },
       {
-          path: "/tools",
-          component: Tools,
-          name: "Tools",
+          path: "/tool",
+          component: Tool,
+          name: "Tool",
           meta: {
               title: "工具"
+          }
+      },
+      {
+          path: "/devTool",
+          component: devTool,
+          name: "DevTool",
+          meta: {
+              title: "开发者工具"
           }
       }
   ]

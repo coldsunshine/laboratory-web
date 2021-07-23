@@ -1,70 +1,32 @@
 <template>
   <el-container>
-    <el-header class="text-center"><h1>工具库</h1></el-header>
+    <el-header class="text-center"><h1>Lab 实验室</h1></el-header>
     <el-main>
       <el-row>
         <el-col :md="4" :xs="0">&zwj;</el-col>
         <el-col :md="16" :xs="24">
+
           <el-row :gutter="20">
-
-            <el-col :xs="12" :sm="6" class="row-space">
-              <router-link :to="{name:'Cookie'}">
-                <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                  <div class="img-div" style="background-color: #E6A23C">
-                    <img src="//blog-bucket.yiidii.cn/icon/svg/Cookies.svg" class="image"/>
-                  </div>
-                  <div class="card-body">
-                    <span class="card-title">Cookie工具</span>
-                    <span class="card-desc">包含JD, 联通的cookie在线获取</span>
-                  </div>
-                  <div class="card-footer">
-                    <el-link type="primary" :underline="false">点击进入<i class="el-icon-arrow-right"></i></el-link>
-                  </div>
-                </el-card>
-              </router-link>
-            </el-col>
-
-            <el-col :xs="12" :sm="6" class="row-space">
-              <router-link :to="{name:'Tools'}">
-                <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                  <div class="img-div" style="background-color: #F56C6C">
-                    <img src="//blog-bucket.yiidii.cn/icon/svg/tools.svg" class="image"/>
-                  </div>
-                  <div class="card-body">
-                    <span class="card-title">开发者工具</span>
-                    <span class="card-desc">
-                    <ul>
-                      <li>mybatis日志解析</li>
-                      <li>sql格式化</li>
-                      <li>时间转换工具</li>
-                      <li>JSON工具</li>
-                    </ul>
-                  </span>
-                  </div>
-                  <div class="card-footer">
-                    <el-link type="info" :underline="false">点击进入<i class="el-icon-arrow-right"></i></el-link>
-                  </div>
-                </el-card>
-              </router-link>
-            </el-col>
-
-            <el-col :xs="12" :sm="6" class="row-space">
-              <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                <div class="img-div" style="background-color: #909399">
-                  <img src="//blog-bucket.yiidii.cn/icon/svg/waiting.svg" class="image"/>
-                </div>
-                <div class="card-body">
-                  <span class="card-title">Waiting...</span>
-                  <span class="card-desc">
-                    更多内容敬请期待...
-                  </span>
-                </div>
-                <div class="card-footer">
-                </div>
-              </el-card>
-            </el-col>
-
+            <div v-for="card in cardInfo" :key="card.routerName">
+              <el-col :xs="24" :sm="6" class="row-space">
+                <router-link :to="{name:card.routerName}">
+                  <el-card :body-style="{ padding: '0px' }" shadow="hover">
+                    <div class="img-div" :style="'background-color: ' + card.bgColor ">
+                      <img :src="card.imgSrc" class="image"/>
+                    </div>
+                    <div class="card-body">
+                      <span class="card-title">{{ card.title }}</span>
+                      <span class="card-desc" v-html="card.desc"></span>
+                    </div>
+                    <div class="card-footer">
+                      <el-link type="primary" :underline="false">点击进入<i class="el-icon-arrow-right"></i></el-link>
+                    </div>
+                  </el-card>
+                </router-link>
+              </el-col>
+            </div>
           </el-row>
+
         </el-col>
       </el-row>
     </el-main>
@@ -76,7 +38,34 @@ export default {
   name: "index",
   data() {
     return {
-      currentDate: new Date()
+      cardInfo: [{
+        routerName: 'Cookie',
+        imgSrc: '//blog-bucket.yiidii.cn/icon/svg/Cookies.svg',
+        title: 'Cookie获取',
+        desc: '包含JD, 联通的cookie在线获取',
+        bgColor: '#E6A23C',
+      },
+      //   {
+      //   routerName: 'Tool',
+      //   imgSrc: '//blog-bucket.yiidii.cn/icon/svg/tools.svg',
+      //   title: '工具',
+      //   desc: '<ul><li>md转ubb工具</li></ul>',
+      //   bgColor: '#67C23A'
+      // },
+        {
+        routerName: 'DevTool',
+        imgSrc: '//blog-bucket.yiidii.cn/icon/svg/Developer.svg',
+        title: '开发者工具',
+        desc: '<ul><li>mybatis日志解析</li><li>sql格式化</li><li>时间转换工具</li><li>JSON工具</li></ul>',
+        bgColor: '#F56C6C'
+      }, {
+        routerName: '',
+        imgSrc: '//blog-bucket.yiidii.cn/icon/svg/Cookies.svg',
+        title: 'Waiting...',
+        desc: '更多内容尽请期待...',
+        bgColor: '#909399'
+      }
+      ]
     };
   }
 }
@@ -101,7 +90,7 @@ ul {
 }
 
 .card-body {
-  padding: 0 8px ;
+  padding: 0 8px;
   margin-top: 16px;
   height: 96px;
 }

@@ -96,13 +96,13 @@ export default {
       this.json = json
     },
     compress() {
-      this.srcJson = this.srcJson.replace(/[\r\n ]/g, "")
+      this.srcJson = this.srcJson.replace(/[\r\n]/g, "")
     },
     escape() {
       this.srcJson = this.srcJson.replace(/\\/g, "\\\\").replace(/\"/g, '\\"')
     },
     compressAndEscape() {
-      this.srcJson = this.srcJson.replace(/[\r\n ]/g, "").replace(/\\/g, "\\\\").replace(/\"/g, '\\"')
+      this.srcJson = this.srcJson.replace(/[\r\n]/g, "").replace(/\\/g, "\\\\").replace(/\"/g, '\\"')
     },
     unEscape() {
       this.srcJson = this.srcJson.replace(/\\\\/g, "\\").replace(/\\\"/g, '"')
