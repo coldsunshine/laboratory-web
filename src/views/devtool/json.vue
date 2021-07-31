@@ -253,8 +253,7 @@ export default {
       this.json = json;
     },
     compress() {
-      let val = this.srcJson;
-      val = val.replace(/[\r\n]/g, "");
+      this.srcJson = this.srcJson.replace(/[\r\n]/g, "");
     },
     escape() {
       this.srcJson = this.srcJson.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
