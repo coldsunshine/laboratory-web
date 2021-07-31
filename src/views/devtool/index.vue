@@ -1,6 +1,8 @@
 <template>
   <el-container>
-    <el-header class="text-center"><h1>开发者工具</h1></el-header>
+    <el-header class="text-center">
+      <h1 class="text-2xl mt-4">开发者工具</h1>
+    </el-header>
     <el-main>
       <el-row>
         <el-col :md="2" :xs="0">&zwj;</el-col>
@@ -26,8 +28,8 @@
                     v-for="item in jsonStyle.styles"
                     :key="item.value"
                     :label="item.value"
-                    >{{ item.label }}</el-radio-button
-                  >
+                    >{{ item.label }}
+                  </el-radio-button>
                 </el-radio-group>
               </div>
 

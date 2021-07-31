@@ -1,6 +1,8 @@
 <template>
   <el-container>
-    <el-header class="text-center"><h2>Cookie获取</h2></el-header>
+    <el-header class="text-center">
+      <h2 class="text-2xl mt-4">Cookie获取</h2>
+    </el-header>
     <el-main>
       <el-row>
         <el-col :md="8">&zwj;</el-col>
@@ -9,15 +11,13 @@
             <el-tab-pane class="text-center" label="京东" name="tab_jd">
               <jd />
             </el-tab-pane>
-            <el-tab-pane label="联通" name="tab_chinaUnicom"
-              ><unicom />
+            <el-tab-pane label="联通" name="tab_chinaUnicom">
+              <unicom />
             </el-tab-pane>
           </el-tabs>
-        </el-col> </el-row
-    ></el-main>
-
-    <el-footer></el-footer>
-    <el-backtop></el-backtop>
+        </el-col>
+      </el-row>
+    </el-main>
   </el-container>
 </template>
 

@@ -9,6 +9,8 @@ import notify from "./utils/notify.js";
 import message from "./utils/message.js";
 // echarts
 import * as echarts from "echarts";
+// import "./index.css";
+import "tailwindcss/tailwind.css";
 
 Vue.config.productionTip = false;
 //element

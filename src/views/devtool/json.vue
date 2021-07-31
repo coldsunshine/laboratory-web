@@ -13,8 +13,8 @@
                 size="mini"
                 :disabled="!srcJson"
                 @click="compress()"
-                >压缩</el-button
-              >
+                >压缩
+              </el-button>
               <el-button
                 style="margin-top: 10px"
                 class="row-space"
@@ -22,8 +22,8 @@
                 size="mini"
                 :disabled="!srcJson"
                 @click="escape()"
-                >转义</el-button
-              >
+                >转义
+              </el-button>
               <el-button
                 style="margin-top: 10px"
                 class="row-space"
@@ -31,8 +31,8 @@
                 size="mini"
                 :disabled="!srcJson"
                 @click="compressAndEscape()"
-                >压缩并转义</el-button
-              >
+                >压缩并转义
+              </el-button>
               <el-button
                 style="margin-top: 10px"
                 class="row-space"
@@ -40,8 +40,8 @@
                 size="mini"
                 :disabled="!srcJson"
                 @click="unEscape()"
-                >去转义</el-button
-              >
+                >去转义
+              </el-button>
               <el-button
                 style="margin-top: 10px"
                 class="row-space"
@@ -49,8 +49,8 @@
                 size="mini"
                 :disabled="!srcJson"
                 @click="unicode2Ch()"
-                >unicode转中文</el-button
-              >
+                >unicode转中文
+              </el-button>
             </el-button-group>
           </el-col>
         </el-row>
@@ -253,7 +253,8 @@ export default {
       this.json = json;
     },
     compress() {
-      this.srcJson = this.srcJson.replace(/[\r\n]/g, "");
+      let val = this.srcJson;
+      val = val.replace(/[\r\n]/g, "");
     },
     escape() {
       this.srcJson = this.srcJson.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
@@ -265,7 +266,7 @@ export default {
         .replace(/"/g, '\\"');
     },
     unEscape() {
-      this.srcJson = this.srcJson.replace(/\\\\/g, "\\").replace(/"/g, '"');
+      this.srcJson = this.srcJson.replace(/\\\\/g, "\\").replace(/\\"/g, '"');
     },
     unicode2Ch() {
       let e = this.srcJson;

@@ -1,6 +1,5 @@
 <template>
   <el-container>
-    <el-header class="text-center"><h1>Lab 实验室</h1></el-header>
     <el-main>
       <el-row>
         <el-col :md="4" :xs="0">&zwj;</el-col>
@@ -9,12 +8,12 @@
             <div v-for="card in cardInfo" :key="card.routerName">
               <el-col :xs="24" :sm="6" class="row-space">
                 <router-link :to="{ name: card.routerName }">
-                  <el-card :body-style="{ padding: '0px' }" shadow="hover">
+                  <el-card :body-style="{ padding: '0px' }" class="rounded-lg">
                     <div
                       class="img-div"
                       :style="'background-color: ' + card.bgColor"
                     >
-                      <img :src="card.imgSrc" class="image" />
+                      <img :src="card.imgSrc" class="image inline-block" />
                     </div>
                     <div class="card-body">
                       <span class="card-title">{{ card.title }}</span>
@@ -66,7 +65,7 @@ export default {
         },
         {
           routerName: "",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/Cookies.svg",
+          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/waiting.svg",
           title: "Waiting...",
           desc: "更多内容尽请期待...",
           bgColor: "#909399"

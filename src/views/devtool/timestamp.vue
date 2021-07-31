@@ -83,8 +83,6 @@
       </el-col>
     </el-row>
 
-    <el-button type="warning">test</el-button>
-
     <el-divider />
 
     <el-row style="margin-bottom: 20px">

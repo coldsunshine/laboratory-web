@@ -1,17 +1,21 @@
 <template>
   <div id="app">
+    <Header />
     <transition name="el-fade-in-linear">
       <router-view />
     </transition>
     <Footer />
+    <el-backtop></el-backtop>
   </div>
 </template>
 <script>
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 
 export default {
   name: "Home",
   components: {
+    Header,
     Footer
   }
 };
