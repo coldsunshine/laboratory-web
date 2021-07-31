@@ -1,13 +1,16 @@
 <template>
   <div class="footer">
-    <el-footer >©2021 <a href="https://blog.yiidii.cn">YiiDii</a>. All rights reserved.</el-footer>
+    <el-footer
+      >©2021 <a href="https://blog.yiidii.cn">YiiDii</a>. All rights
+      reserved.</el-footer
+    >
   </div>
 </template>
 
 <script>
 export default {
   name: "Footer"
-}
+};
 </script>
 
 <style>

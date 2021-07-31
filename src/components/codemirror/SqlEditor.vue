@@ -11,17 +11,20 @@ import "codemirror/mode/sql/sql.js";
 import "codemirror/theme/idea.css"; // 主题
 
 export default {
-  props: ["value", "height"],
+  props: {
+    value: { type: String, default: null },
+    height: { type: String, default: null }
+  },
   data() {
     return {
       editor: false
     };
   },
   watch: {
-    value: function () {
+    value: function() {
       this.editor.setValue(this.value);
     },
-    height: function () {
+    height: function() {
       this.editor.setSize("auto", this.height);
     },
     editor: {
@@ -49,16 +52,13 @@ export default {
     });
     this.editor.setSize("auto", this.height);
     this.editor.setValue(this.value);
-
   },
   methods: {
     getValue() {
       return this.editor.getValue();
-    },
+    }
   }
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

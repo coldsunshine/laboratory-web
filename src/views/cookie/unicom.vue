@@ -8,26 +8,28 @@
           </el-form-item>
           <el-form-item label="验证码">
             <el-input v-model="smsCode">
-              <el-button v-if="timeCounter > 0" slot="append">{{ timeCounter }}</el-button>
+              <el-button v-if="timeCounter > 0" slot="append">{{
+                timeCounter
+              }}</el-button>
             </el-input>
           </el-form-item>
         </el-form>
         <div class="text-center"></div>
         <div class="text-center row-space">
           <el-button
-              :disabled="!btnEnabled.sendRandomNum"
-              type="primary"
-              size="small"
-              @click="sendRandomNum"
+            :disabled="!btnEnabled.sendRandomNum"
+            type="primary"
+            size="small"
+            @click="sendRandomNum"
           >
             发送验证码
           </el-button>
           <el-button
-              :disabled="!btnEnabled.randomLogin"
-              type="primary"
-              size="small"
-              :loading="btnLoading.randomLogin"
-              @click="randomLogin"
+            :disabled="!btnEnabled.randomLogin"
+            type="primary"
+            size="small"
+            :loading="btnLoading.randomLogin"
+            @click="randomLogin"
           >
             登陆
           </el-button>
@@ -38,10 +40,10 @@
     <el-row class="row-space">
       <el-col>
         <el-input
-            v-if="cookieStr"
-            v-model="cookieStr"
-            type="textarea"
-            rows="5"
+          v-if="cookieStr"
+          v-model="cookieStr"
+          type="textarea"
+          rows="5"
         />
       </el-col>
     </el-row>
@@ -49,7 +51,7 @@
 </template>
 
 <script>
-import {sendRandomNum, randomLogin} from "@/api/unicom/unicom.js";
+import { sendRandomNum, randomLogin } from "@/api/unicom/unicom.js";
 
 export default {
   data() {
@@ -87,25 +89,25 @@ export default {
       params.mobile = this.mobile;
       this.cookieStr = "";
       sendRandomNum(params)
-      .then(resp => {
-        if (resp == undefined) {
-          return;
-        }
-        this.timeCounter = 60;
-        this.btnEnabled.sendRandomNum = false;
-        let counter = setInterval(() => {
-          this.timeCounter--;
-          if (this.timeCounter <= 0) {
-            this.btnEnabled.sendRandomNum = true;
-            clearInterval(counter);
+        .then(resp => {
+          if (resp == undefined) {
+            return;
           }
-        }, 1000);
-      })
-      .catch(err => {
-        this.btnEnabled.sendRandomNum = true;
-        this.timeCounter = 0;
-        console.log(err);
-      });
+          this.timeCounter = 60;
+          this.btnEnabled.sendRandomNum = false;
+          let counter = setInterval(() => {
+            this.timeCounter--;
+            if (this.timeCounter <= 0) {
+              this.btnEnabled.sendRandomNum = true;
+              clearInterval(counter);
+            }
+          }, 1000);
+        })
+        .catch(err => {
+          this.btnEnabled.sendRandomNum = true;
+          this.timeCounter = 0;
+          console.log(err);
+        });
     },
     randomLogin() {
       let params = {};
@@ -114,19 +116,19 @@ export default {
       params.password = this.smsCode;
       this.btnLoading.randomLogin = true;
       randomLogin(params)
-      .then(resp => {
-        this.btnLoading.randomLogin = false;
-        this.timeCounter = 0;
-        this.btnEnabled.sendRandomNum = true;
-        this.cookieStr = resp.data.cookieStr;
-      })
-      .catch(err => {
-        this.cookieStr = "";
-        this.btnEnabled.sendRandomNum = true;
-        this.btnLoading.randomLogin = false;
-        this.timeCounter = 0;
-        console.log(err);
-      });
+        .then(resp => {
+          this.btnLoading.randomLogin = false;
+          this.timeCounter = 0;
+          this.btnEnabled.sendRandomNum = true;
+          this.cookieStr = resp.data.cookieStr;
+        })
+        .catch(err => {
+          this.cookieStr = "";
+          this.btnEnabled.sendRandomNum = true;
+          this.btnLoading.randomLogin = false;
+          this.timeCounter = 0;
+          console.log(err);
+        });
     },
     setDynamicWith() {
       let val = document.body.clientWidth;

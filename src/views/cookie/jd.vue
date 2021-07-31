@@ -53,7 +53,7 @@ export default {
           this.$message.success(resp.msg);
           this.check();
         })
-        .catch(err => {
+        .catch(() => {
           clearInterval(this.checkInterval);
         });
     },
@@ -65,7 +65,6 @@ export default {
             clearInterval(this.checkInterval);
             this.jdInfo = resp.data;
             this.cookieVisible = true;
-          } else if (code == 21) {
           }
         });
       }, 3000);
