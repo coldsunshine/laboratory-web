@@ -4,6 +4,7 @@
       <el-row>
         <el-col :md="4" :xs="0">&zwj;</el-col>
         <el-col :md="16" :xs="24">
+          <!-- 卡片 -->
           <el-row :gutter="20">
             <div v-for="card in cardInfo" :key="card.routerName">
               <el-col :xs="24" :sm="6" class="row-space">
@@ -29,6 +30,10 @@
               </el-col>
             </div>
           </el-row>
+          <!-- 访问统计 -->
+          <el-row :gutter="20" class="mt-10 p-4 mx-auto">
+            <AccessRecord />
+          </el-row>
         </el-col>
       </el-row>
     </el-main>
@@ -36,8 +41,12 @@
 </template>
 
 <script>
+import AccessRecord from "@/components/system/accessrRecord/Index";
+import { addOne } from "@/api/system/accessRecord";
+
 export default {
   name: "Index",
+  components: { AccessRecord },
   data() {
     return {
       cardInfo: [
@@ -72,6 +81,9 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    addOne();
   }
 };
 </script>

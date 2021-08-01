@@ -1,5 +1,9 @@
 <template>
-  <img class="lab-logo" src="@/assets/logo.png" alt="logo" />
+  <img
+    class="lab-logo"
+    src="//blog-bucket.yiidii.cn/icon/svg/lab.svg"
+    alt="logo"
+  />
 </template>
 
 <style>

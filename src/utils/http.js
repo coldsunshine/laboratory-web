@@ -22,7 +22,6 @@ const http = {
       headers: { "Content-Type": "application/x-www-form-urlencoded" }
     };
     if (params) config.data = params;
-    console.log(config);
     return request(config);
   },
   postJson(url, params) {
