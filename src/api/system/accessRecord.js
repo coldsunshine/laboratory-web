@@ -1,7 +1,7 @@
 import http from "@/utils/http";
 
 export function addOne(params) {
-  return http.postForm("/accessRecord", params);
+  return http.postJson("/accessRecord", params);
 }
 
 export function statistics(params) {
@@ -12,6 +12,6 @@ export function accessTrend() {
   return http.get("/accessRecord/trend");
 }
 
-export function overview() {
-  return http.get("/accessRecord/overview");
+export function overview(params) {
+  return http.get("/accessRecord/overview", params);
 }

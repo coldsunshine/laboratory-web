@@ -49,12 +49,19 @@ export default {
       }
     };
   },
-  created() {
-    this.renderAccessOverview();
+  watch: {
+    $route: {
+      handler: function() {
+        this.renderAccessOverview();
+      },
+      // 深度观察监听
+      deep: true
+    }
   },
   methods: {
     renderAccessOverview() {
-      overview()
+      let param = { path: this.$route.path };
+      overview(param)
         .then(resp => {
           this.overview = resp.data;
         })

@@ -42,7 +42,7 @@
 
 <script>
 import AccessRecord from "@/components/system/accessrRecord/Index";
-import { addOne } from "@/api/system/accessRecord";
+// import { addOne } from "@/api/system/accessRecord";
 
 export default {
   name: "Index",
@@ -90,7 +90,7 @@ export default {
     };
   },
   created() {
-    addOne();
+    // addOne();
   }
 };
 </script>
