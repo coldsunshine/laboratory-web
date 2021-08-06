@@ -24,6 +24,9 @@ export default {
       deep: true
     }
   },
+  created() {
+    this.addAAccessRecord();
+  },
   methods: {
     addAAccessRecord() {
       let fullPath = this.$route.fullPath;

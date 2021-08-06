@@ -58,6 +58,9 @@ export default {
       deep: true
     }
   },
+  created() {
+    this.renderAccessOverview();
+  },
   methods: {
     renderAccessOverview() {
       let param = { path: this.$route.path };
