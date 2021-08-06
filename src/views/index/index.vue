@@ -73,6 +73,13 @@ export default {
           bgColor: "#F56C6C"
         },
         {
+          routerName: "WMIndex",
+          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/waterMark.svg",
+          title: "去水印",
+          desc: "<ul><li>抖音</li><li>快手</li></ul>",
+          bgColor: "#056E83"
+        },
+        {
           routerName: "",
           imgSrc: "//blog-bucket.yiidii.cn/icon/svg/waiting.svg",
           title: "Waiting...",

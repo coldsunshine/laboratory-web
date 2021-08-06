@@ -11,6 +11,9 @@ import message from "./utils/message.js";
 import * as echarts from "echarts";
 // import "./index.css";
 import "tailwindcss/tailwind.css";
+import VideoPlayer from "vue-video-player";
+import "vue-video-player/src/custom-theme.css";
+import "video.js/dist/video-js.css";
 
 Vue.config.productionTip = false;
 //element
@@ -20,6 +23,8 @@ Vue.prototype.$notify = notify;
 Vue.prototype.$message = message;
 // echarts
 Vue.prototype.$echarts = echarts;
+
+Vue.use(VideoPlayer);
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */

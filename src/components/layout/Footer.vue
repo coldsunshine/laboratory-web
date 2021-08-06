@@ -1,15 +1,20 @@
 <template>
   <div class="footer">
     <el-footer
-      >©2021 <a href="https://blog.yiidii.cn">YiiDii</a>. All rights
-      reserved.</el-footer
-    >
+      >©2021 <a href="https://blog.yiidii.cn">YiiDii</a>. All rights reserved.
+    </el-footer>
+    <AccessOverview />
   </div>
 </template>
 
 <script>
+import AccessOverview from "@/components/accessRecord/AccessOverview";
+
 export default {
-  name: "Footer"
+  name: "Footer",
+  components: {
+    AccessOverview
+  }
 };
 </script>
 

@@ -52,7 +52,7 @@ export default {
     setTimeout(() => {
       _this.renderPie();
       _this.renderTrend();
-    }, 500);
+    }, 200);
   },
   methods: {
     renderPie() {
@@ -81,7 +81,7 @@ export default {
         ]
       };
       // 按照platform
-      let params = { group: "platform" };
+      let params = { group: "platform", topN: 5 };
       statistics(params)
         .then(resp => {
           let dataJa = resp.data;
@@ -109,7 +109,7 @@ export default {
         });
 
       // 按照platform
-      params = { group: "browser" };
+      params = { group: "browser", topN: 5 };
       statistics(params)
         .then(resp => {
           let dataJa = resp.data;
@@ -136,7 +136,7 @@ export default {
         });
 
       // 按照device
-      params = { group: "deviceName" };
+      params = { group: "deviceName", topN: 5 };
       statistics(params)
         .then(resp => {
           let dataJa = resp.data;

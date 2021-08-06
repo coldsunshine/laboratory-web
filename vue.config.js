@@ -42,5 +42,13 @@ module.exports = {
       filename: `js/[name].${Timestamp}.js`,
       chunkFilename: `js/[name].${Timestamp}.js`
     }
+  },
+  css: {
+    //重点.
+    extract: {
+      // 打包后css文件名称添加时间戳
+      filename: `css/[name].${Timestamp}.css`,
+      chunkFilename: `css/[name].${Timestamp}.css`
+    }
   }
 };
