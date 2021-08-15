@@ -6,6 +6,7 @@ import Cookie from "./views/cookie";
 import devTool from "./views/devtool";
 import Tool from "./views/tool/index";
 import WMIndex from "./views/wm/index";
+import WsChat from "./views/wsChat/index";
 
 Vue.use(Router);
 
@@ -51,6 +52,14 @@ export default new Router({
       name: "WMIndex",
       meta: {
         title: "去水印"
+      }
+    },
+    {
+      path: "/chat",
+      component: WsChat,
+      name: "WsChat",
+      meta: {
+        title: "WEB IM"
       }
     }
   ]

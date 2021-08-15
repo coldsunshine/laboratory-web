@@ -80,6 +80,13 @@ export default {
           bgColor: "#056E83"
         },
         {
+          routerName: "WsChat",
+          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/chat_transparent.svg",
+          title: "Web IM",
+          desc: "基于websocket + Netty4 的IM",
+          bgColor: "#909399"
+        },
+        {
           routerName: "",
           imgSrc: "//blog-bucket.yiidii.cn/icon/svg/waiting.svg",
           title: "Waiting...",
