@@ -7,8 +7,8 @@ if (process.env.NODE_ENV == "development") {
   ipPort = "http://lab.yiidii.cn:7780";
 } else if (process.env.NODE_ENV == "production") {
   baseUrl = "http://lab.yiidii.cn:1170";
-  ipPort = "http://lab.yiidii.cn:7780";
+  ipPort = "lab.yiidii.cn:7780";
 } else {
-  ipPort = "http://lab.yiidii.cn:7780";
   baseUrl = "http://lab.yiidii.cn:1170";
+  ipPort = "lab.yiidii.cn:7780";
 }
