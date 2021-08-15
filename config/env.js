@@ -4,11 +4,11 @@ export let ipPort = "";
 
 if (process.env.NODE_ENV == "development") {
   baseUrl = "/api";
-  ipPort = "http://lab.yiidii.cn:7780";
+  ipPort = "127.0.0.1:7880";
 } else if (process.env.NODE_ENV == "production") {
   baseUrl = "http://lab.yiidii.cn:1170";
-  ipPort = "lab.yiidii.cn:7780";
+  ipPort = "159.75.42.178:7880";
 } else {
   baseUrl = "http://lab.yiidii.cn:1170";
-  ipPort = "lab.yiidii.cn:7780";
+  ipPort = "159.75.42.178:7880";
 }
