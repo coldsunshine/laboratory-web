@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header class="text-center">
-      <h2 class="text-2xl mt-4">Cookie获取</h2>
+      <h2 class="mt-4 text-2xl">Cookie获取</h2>
     </el-header>
     <el-main>
       <el-row>
@@ -9,7 +9,8 @@
         <el-col :md="8">
           <el-tabs v-model="activeName" stretch @tab-click="handleClick">
             <el-tab-pane class="text-center" label="京东" name="tab_jd">
-              <jd />
+              <!-- <jd /> -->
+              <JdChrome />
             </el-tab-pane>
             <el-tab-pane label="联通" name="tab_chinaUnicom">
               <unicom />
@@ -22,12 +23,13 @@
 </template>
 
 <script>
-import jd from "./jd";
+// import jd from "./jd";
+import JdChrome from "./jdChrome";
 import unicom from "./unicom";
 
 export default {
   components: {
-    jd,
+    JdChrome,
     unicom
   },
   data() {

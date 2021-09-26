@@ -19,7 +19,9 @@ const http = {
     const config = {
       method: "post",
       url: url,
-      headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
     };
     if (params) config.data = params;
     return request(config);
