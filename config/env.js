@@ -6,7 +6,7 @@ if (process.env.NODE_ENV == "development") {
   baseUrl = "/api";
   ipPort = "127.0.0.1:7880";
 } else if (process.env.NODE_ENV == "production") {
-  baseUrl = "http://159.75.42.178:1170";
+  baseUrl = "http://lab.yiidii.cn/api";
   ipPort = "159.75.42.178:7880";
 } else {
   baseUrl = "http://159.75.42.178:1170";
