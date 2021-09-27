@@ -89,7 +89,7 @@ export default {
 
     chromeLogin() {
       let sid = localStorage.getItem("jd-chrome-sid");
-      let param = { code: this.smsCode, mock: true };
+      let param = { code: this.smsCode, mock: false };
       chromeLogin(sid, param).then(resp => {
         this.ck = resp.data.ck;
       });
