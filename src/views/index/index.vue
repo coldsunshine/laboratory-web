@@ -9,7 +9,10 @@
             <div v-for="card in cardInfo" :key="card.routerName">
               <el-col :xs="24" :sm="6" class="row-space">
                 <router-link :to="{ name: card.routerName }">
-                  <el-card :body-style="{ padding: '0px' }" class="rounded-lg">
+                  <el-card
+                    :body-style="{ padding: '0px' }"
+                    class="rounded-lg duration-200 transform  hover:scale-105"
+                  >
                     <div
                       class="img-div"
                       :style="'background-color: ' + card.bgColor"
@@ -21,7 +24,10 @@
                       <span class="card-desc" v-html="card.desc"></span>
                     </div>
                     <div class="card-footer">
-                      <el-link type="primary" :underline="false"
+                      <el-link
+                        v-if="card.routerName"
+                        type="primary"
+                        :underline="false"
                         >点击进入<i class="el-icon-arrow-right"></i
                       ></el-link>
                     </div>
@@ -115,7 +121,7 @@ ul {
 
 .card-desc {
   color: #909399;
-  font-size: 8px;
+  font-size: 12px;
   display: block;
   padding: 2px;
 }
