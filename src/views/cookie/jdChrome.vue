@@ -51,6 +51,14 @@
     <el-row class="row-space">
       <el-col>
         <el-input v-if="ck" v-model="ck" type="textarea" rows="3" />
+        <el-button
+          v-if="ck"
+          class="mt-2"
+          type="success"
+          size="small"
+          @click="copy(ck)"
+          >复制ck
+        </el-button>
       </el-col>
     </el-row>
   </div>
@@ -58,6 +66,7 @@
 
 <script>
 import { chromeSendSmsCode, chromeLogin } from "@/api/jd/jd.js";
+import { handleClipboard } from "@/utils/clipboard";
 
 export default {
   data() {
@@ -97,6 +106,22 @@ export default {
 
     clearSession() {
       localStorage.removeItem("jd-chrome-sid");
+    },
+
+    copy(value) {
+      if (!value) {
+        return;
+      }
+      handleClipboard(
+        value,
+        event,
+        () => {
+          this.$message.success("复制成功");
+        },
+        () => {
+          this.$message.error(this.$t("复制失败"));
+        }
+      );
     }
   }
 };
