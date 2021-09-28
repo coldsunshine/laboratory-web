@@ -8,7 +8,7 @@
         <el-col :md="8">&zwj;</el-col>
         <el-col :md="8">
           <el-tabs v-model="activeName" stretch @tab-click="handleClick">
-            <el-tab-pane class="text-center" label="京东" name="tab_jd">
+            <el-tab-pane label="京东" name="tab_jd">
               <!-- <jd /> -->
               <JdChrome />
             </el-tab-pane>
