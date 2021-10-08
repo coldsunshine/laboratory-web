@@ -60,7 +60,7 @@ export default new Router({
       component: MiStep,
       name: "MiStep",
       meta: {
-        title: "去水印"
+        title: "刷运动步数"
       }
     },
     {

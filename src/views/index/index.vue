@@ -88,7 +88,7 @@ export default {
         {
           routerName: "MiStep",
           imgSrc: "//blog-bucket.yiidii.cn/icon/svg/run.svg",
-          title: "运动步数",
+          title: "刷运动步数",
           desc: "小米/微信/支付宝运动刷步数",
           bgColor: "#FF7E00"
         },
