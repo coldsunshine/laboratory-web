@@ -86,6 +86,13 @@ export default {
           bgColor: "#056E83"
         },
         {
+          routerName: "MiStep",
+          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/run.svg",
+          title: "运动步数",
+          desc: "小米/微信/支付宝运动刷步数",
+          bgColor: "#FF7E00"
+        },
+        {
           routerName: "WsChat",
           imgSrc: "//blog-bucket.yiidii.cn/icon/svg/chat_transparent.svg",
           title: "Web IM",

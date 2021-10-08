@@ -7,6 +7,7 @@ import devTool from "./views/devtool";
 import Tool from "./views/tool/index";
 import WMIndex from "./views/wm/index";
 import WsChat from "./views/wsChat/index";
+import MiStep from "./views/mi/step";
 
 Vue.use(Router);
 
@@ -50,6 +51,14 @@ export default new Router({
       path: "/wm",
       component: WMIndex,
       name: "WMIndex",
+      meta: {
+        title: "去水印"
+      }
+    },
+    {
+      path: "/mi/step",
+      component: MiStep,
+      name: "MiStep",
       meta: {
         title: "去水印"
       }

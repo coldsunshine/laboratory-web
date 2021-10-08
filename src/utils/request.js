@@ -1,11 +1,12 @@
 /****   request.js   ****/
 //引入baseUrl
 import { baseUrl } from "../../config/env";
-
 // 导入axios
 import axios from "axios";
 // 使用element-ui Message做消息提醒
 import Message from "@/utils/message.js";
+import randomStr from "@/utils/digital.js";
+
 //1. 创建新的axios实例，
 const service = axios.create({
   // 公共接口--这里注意后面会讲
@@ -21,8 +22,7 @@ service.interceptors.request.use(
     if (token) {
       config.headers["Token"] = token;
     }
-    // config.headers['Access-Control-Allow-Origin'] = '*'
-    //config.headers['Token'] = '679FCC86D919AC355942370DC82B3B02F240931798569101E2FDC07CD4374CB7'
+    config.headers["pigeon-trace-id"] = randomStr(32);
     return config;
   },
   error => {
