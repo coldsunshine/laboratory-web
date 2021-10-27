@@ -10,7 +10,7 @@
                 <el-input v-model="phone"></el-input>
               </el-form-item>
               <el-form-item label="密码">
-                <el-input v-model="password"></el-input>
+                <el-input v-model="password" type="password"></el-input>
               </el-form-item>
               <el-form-item label="步数">
                 <el-input v-model="step" placeholder="默认: 18888"></el-input>
@@ -43,7 +43,11 @@ export default {
     };
   },
   watch: {},
-  created() {},
+  created() {
+    this.phone = localStorage.getItem("lab.mi.step.phone");
+    this.password = localStorage.getItem("lab.mi.step.password");
+    this.step = localStorage.getItem("lab.mi.step.step");
+  },
   methods: {
     miBrushStep() {
       let params = {
@@ -54,6 +58,9 @@ export default {
       miBrushStep(params)
         .then(resp => {
           this.$message.success(resp.msg);
+          localStorage.setItem("lab.mi.step.phone", this.phone);
+          localStorage.setItem("lab.mi.step.password", this.password);
+          localStorage.setItem("lab.mi.step.step", this.step);
         })
         .catch(err => {
           console.log(err);
