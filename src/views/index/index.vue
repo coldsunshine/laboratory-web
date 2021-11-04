@@ -17,7 +17,7 @@
                       class="img-div"
                       :style="'background-color: ' + card.bgColor"
                     >
-                      <img :src="card.imgSrc" class="image inline-block" />
+                      <img :src="card.imgSrc" class="image inline-block w-16" />
                     </div>
                     <div class="card-body">
                       <span class="card-title">{{ card.title }}</span>
@@ -98,6 +98,13 @@ export default {
           title: "Web IM",
           desc: "基于websocket + Netty4 的IM",
           bgColor: "#67C23A"
+        },
+        {
+          routerName: "VideoParse",
+          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/movie.svg",
+          title: "视频解析",
+          desc: "视频解析",
+          bgColor: "#a855f7"
         },
         {
           routerName: "",

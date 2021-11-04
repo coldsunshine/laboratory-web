@@ -23,6 +23,7 @@ module.exports = {
     port: 8080, // 端口号
     https: false,
     open: false,
+    disableHostCheck: true,
 
     // 配置多个代理
     proxy: {

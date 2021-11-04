@@ -8,6 +8,7 @@ import Tool from "./views/tool/index";
 import WMIndex from "./views/wm/index";
 import WsChat from "./views/wsChat/index";
 import MiStep from "./views/mi/step";
+import VideoParse from "./views/free/videoparse/index";
 
 Vue.use(Router);
 
@@ -69,6 +70,14 @@ export default new Router({
       name: "WsChat",
       meta: {
         title: "WEB IM"
+      }
+    },
+    {
+      path: "/video-parse",
+      component: VideoParse,
+      name: "VideoParse",
+      meta: {
+        title: "视频解析"
       }
     }
   ]
