@@ -14,6 +14,7 @@ import "tailwindcss/tailwind.css";
 import VideoPlayer from "vue-video-player";
 import "vue-video-player/src/custom-theme.css";
 import "video.js/dist/video-js.css";
+import ElementComponent from "element-component";
 
 Vue.config.productionTip = false;
 //element
@@ -25,6 +26,7 @@ Vue.prototype.$message = message;
 Vue.prototype.$echarts = echarts;
 
 Vue.use(VideoPlayer);
+Vue.use(ElementComponent);
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */

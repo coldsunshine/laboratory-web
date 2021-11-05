@@ -42,15 +42,17 @@
               </el-input>
             </el-col>
           </el-row>
-
           <!-- 播放区域iframe -->
           <el-row class="my-2">
             <el-col :xs="24" :sm="24">
-              <iframe
-                v-if="frameSrc"
-                :src="frameSrc"
-                style="width: 100%; height: 400px"
-              />
+              <div>
+                <iframe
+                  v-if="frameSrc"
+                  :src="frameSrc"
+                  width="100%"
+                  height="400px"
+                />
+              </div>
             </el-col>
           </el-row>
         </el-col>
@@ -75,13 +77,26 @@ export default {
   },
   watch: {},
   created() {
-    this.videoParse();
+    this.initApi();
   },
   methods: {
-    videoParse() {
+    initApi() {
       videoParse().then(resp => {
         this.apiList = resp.data;
+        // 默认选中第一个
+        if (this.apiList.length > 0) {
+          this.selectedApi = this.apiList[0].value;
+          this.handleRouteParam();
+        }
       });
+    },
+    handleRouteParam() {
+      const params = this.$route.query;
+      let url = params.url;
+      if (!this.validator.isEmpty(url)) {
+        this.link = url;
+        this.frameSrc = this.selectedApi + url;
+      }
     },
     parse() {
       this.frameSrc = "";
