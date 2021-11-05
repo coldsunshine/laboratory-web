@@ -51,6 +51,8 @@
                   :src="frameSrc"
                   width="100%"
                   height="400px"
+                  allowtransparency="true"
+                  allowfullscreen="true"
                 />
               </div>
             </el-col>
