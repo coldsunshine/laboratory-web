@@ -48,76 +48,29 @@
 
 <script>
 import AccessRecord from "@/components/system/accessrRecord/Index";
-// import { addOne } from "@/api/system/accessRecord";
+import { getList } from "@/api/free/dict";
 
 export default {
   name: "Index",
   components: { AccessRecord },
   data() {
     return {
-      cardInfo: [
-        {
-          routerName: "Cookie",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/Cookies.svg",
-          title: "Cookie获取",
-          desc: "包含JD, 联通的cookie在线获取",
-          bgColor: "#E6A23C"
-        },
-        //   {
-        //   routerName: 'Tool',
-        //   imgSrc: '//blog-bucket.yiidii.cn/icon/svg/tools.svg',
-        //   title: '工具',
-        //   desc: '<ul><li>md转ubb工具</li></ul>',
-        //   bgColor: '#67C23A'
-        // },
-        {
-          routerName: "DevTool",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/Developer.svg",
-          title: "开发者工具",
-          desc:
-            "<ul><li>mybatis日志解析</li><li>sql格式化</li><li>时间转换工具</li><li>JSON工具</li></ul>",
-          bgColor: "#F56C6C"
-        },
-        {
-          routerName: "WMIndex",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/waterMark.svg",
-          title: "去水印",
-          desc: "<ul><li>抖音</li><li>快手</li></ul>",
-          bgColor: "#056E83"
-        },
-        {
-          routerName: "MiStep",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/run.svg",
-          title: "刷运动步数",
-          desc: "小米/微信/支付宝运动刷步数",
-          bgColor: "#FF7E00"
-        },
-        {
-          routerName: "WsChat",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/chat_transparent.svg",
-          title: "Web IM",
-          desc: "基于websocket + Netty4 的IM",
-          bgColor: "#67C23A"
-        },
-        {
-          routerName: "VideoParse",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/movie.svg",
-          title: "视频解析",
-          desc: "视频解析",
-          bgColor: "#a855f7"
-        },
-        {
-          routerName: "",
-          imgSrc: "//blog-bucket.yiidii.cn/icon/svg/waiting.svg",
-          title: "Waiting...",
-          desc: "更多内容尽请期待...",
-          bgColor: "#909399"
-        }
-      ]
+      cardInfo: []
     };
   },
   created() {
-    // addOne();
+    this.initCardInfo();
+  },
+  methods: {
+    initCardInfo() {
+      getList("LAB_INDEX_CARD").then(resp => {
+        this.cardInfo = resp.data
+          .filter(c => c.status == "ENABLED")
+          .map(c => {
+            return JSON.parse(c.value);
+          });
+      });
+    }
   }
 };
 </script>
