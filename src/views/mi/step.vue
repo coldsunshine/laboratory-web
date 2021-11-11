@@ -4,7 +4,7 @@
       <el-col :sm="6">&zwj;</el-col>
       <el-col :xs="24" :sm="12">
         <el-row>
-          <el-col class="mt-4 p-2 text-center">
+          <el-col class="my-2 p-2 text-center">
             <TextScroll
               scroll-type="scroll-up"
               :play-time="2000"
@@ -34,6 +34,35 @@
             <el-button type="primary" size="small" @click="miBrushStep()">
               刷步
             </el-button>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col class="">
+            <div
+              class="my-4 mx-2 p-4 bg-gray-50 rounded-sm border-l-4 border-yellow-500 "
+            >
+              <div class="text-current text-sm">
+                <p class="my-2 font-bold">食用方法</p>
+                <ul class=" list-disc ml-4 text-gray-400">
+                  <li>前提：安卓/IOS通用</li>
+                  <li>
+                    下载： 应用商店或App Store下载<span class="font-bold"
+                      >小米运动</span
+                    >APP
+                  </li>
+                  <li>
+                    登录： 登录APP（这里<span class="text-red-500 font-bold"
+                      >不要用第三方账号授权登录</span
+                    >，直接<span class="text-green-500 font-bold"
+                      >用手机号注册登录</span
+                    >）
+                  </li>
+                  <li>绑定：第三方接入，绑定微信/支付宝即可</li>
+                  <li>刷新：最后在本页面输入信息刷新步数</li>
+                </ul>
+              </div>
+            </div>
           </el-col>
         </el-row>
       </el-col>
