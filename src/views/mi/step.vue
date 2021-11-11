@@ -25,6 +25,9 @@
               <el-form-item label="步数">
                 <el-input v-model="step" placeholder="默认: 18888"></el-input>
               </el-form-item>
+              <el-form-item label="自动">
+                <el-switch v-model="auto" active-color="#13ce66"></el-switch>
+              </el-form-item>
             </el-form>
           </el-col>
         </el-row>
@@ -81,6 +84,7 @@ export default {
       phone: "",
       password: "",
       step: "",
+      auto: false,
       brushStepLatest: []
     };
   },
@@ -89,6 +93,7 @@ export default {
     this.phone = localStorage.getItem("lab.mi.step.phone");
     this.password = localStorage.getItem("lab.mi.step.password");
     this.step = localStorage.getItem("lab.mi.step.step");
+    this.auto = "true" == localStorage.getItem("lab.mi.step.auto");
 
     this.miBrushStepTopN();
     setInterval(() => {
@@ -100,14 +105,17 @@ export default {
       let params = {
         phone: this.phone,
         password: this.password,
-        step: this.step
+        step: this.step,
+        auto: this.auto
       };
+      console.log(params);
       miBrushStep(params)
         .then(resp => {
           this.$message.success(resp.msg);
           localStorage.setItem("lab.mi.step.phone", this.phone);
           localStorage.setItem("lab.mi.step.password", this.password);
           localStorage.setItem("lab.mi.step.step", this.step);
+          localStorage.setItem("lab.mi.step.auto", this.auto);
         })
         .catch(err => {
           console.log(err);
