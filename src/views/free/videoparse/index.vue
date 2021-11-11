@@ -214,7 +214,7 @@ export default {
     sponsorApi() {
       this.$refs["sponsorApiForm"].validate(valid => {
         if (valid) {
-          save(this.sponsorApiForm).then(resp => {
+          save(this.sponsorApiForm).then(() => {
             this.$message.success("添加成功，等待管理员审核");
           });
         } else {

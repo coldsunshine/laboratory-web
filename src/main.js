@@ -9,7 +9,7 @@ import notify from "./utils/notify.js";
 import message from "./utils/message.js";
 // echarts
 import * as echarts from "echarts";
-// import "./index.css";
+import "./index.css";
 import "tailwindcss/tailwind.css";
 import VideoPlayer from "vue-video-player";
 import "vue-video-player/src/custom-theme.css";

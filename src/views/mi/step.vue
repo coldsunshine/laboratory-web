@@ -4,6 +4,16 @@
       <el-col :sm="6">&zwj;</el-col>
       <el-col :xs="24" :sm="12">
         <el-row>
+          <el-col class="mt-4 p-2 text-center">
+            <TextScroll
+              scroll-type="scroll-up"
+              :play-time="2000"
+              :data-list="brushStepLatest"
+            />
+          </el-col>
+        </el-row>
+
+        <el-row>
           <el-col class="p-2">
             <el-form label-width="60px">
               <el-form-item label="手机号">
@@ -32,14 +42,17 @@
 </template>
 
 <script>
-import { miBrushStep } from "@/api/mi/step";
+import { miBrushStep, miBrushStepTopN } from "@/api/mi/step";
+import TextScroll from "@/components/TextScroll";
 
 export default {
+  components: { TextScroll },
   data() {
     return {
       phone: "",
       password: "",
-      step: ""
+      step: "",
+      brushStepLatest: []
     };
   },
   watch: {},
@@ -47,6 +60,11 @@ export default {
     this.phone = localStorage.getItem("lab.mi.step.phone");
     this.password = localStorage.getItem("lab.mi.step.password");
     this.step = localStorage.getItem("lab.mi.step.step");
+
+    this.miBrushStepTopN();
+    setInterval(() => {
+      this.miBrushStepTopN();
+    }, 3000);
   },
   methods: {
     miBrushStep() {
@@ -65,6 +83,15 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    miBrushStepTopN() {
+      miBrushStepTopN().then(resp => {
+        this.brushStepLatest = resp.data;
+        this.brushStepLatest.forEach(function(item) {
+          item.content =
+            item.startTime + " " + item.content + "(" + item.location + ")";
+        });
+      });
     }
   }
 };
