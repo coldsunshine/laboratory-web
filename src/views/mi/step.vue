@@ -27,6 +27,14 @@
               </el-form-item>
               <el-form-item label="自动">
                 <el-switch v-model="auto" active-color="#13ce66"></el-switch>
+                <el-tooltip
+                  class="mx-2 absolute top-1.5"
+                  effect="dark"
+                  content="将用户名密码保存到服务端，每小时自动刷新步数"
+                  placement="top"
+                >
+                  <span class="text-lg"><i class="el-icon-question"></i></span>
+                </el-tooltip>
               </el-form-item>
             </el-form>
           </el-col>
