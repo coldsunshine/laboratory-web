@@ -55,9 +55,6 @@
                   allowfullscreen="true"
                 />
               </div>
-              <div class="mt-4 text-center text-xs text-gray-400">
-                接口及内容来自互联网，仅供学习使用，与本站无关
-              </div>
             </el-col>
           </el-row>
         </el-col>

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <div class="mt-4 mb-2 text-center text-xs text-gray-400">
+      部分内容来自互联网，仅供学习使用，与本站无关，
+      <el-link
+        type="info"
+        class="text-xs absolute"
+        href="mailto:3087233411@qq.com?subject=标题&body=内容"
+        >侵删 <i class="el-icon-message"></i
+      ></el-link>
+    </div>
     <div class="text-center text-xs text-gray-400">
       ©2021 <a href="https://blog.yiidii.cn">YiiDii</a>. All rights reserved.
     </div>
