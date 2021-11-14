@@ -133,8 +133,10 @@ export default {
       miBrushStepTopN().then(resp => {
         this.brushStepLatest = resp.data;
         this.brushStepLatest.forEach(function(item) {
-          item.content =
-            item.startTime + " " + item.content + "(" + item.location + ")";
+          item.content = item.startTime + " " + item.content;
+          if (item.location) {
+            item.content = item.content + "(" + item.location + ")";
+          }
         });
       });
     }
