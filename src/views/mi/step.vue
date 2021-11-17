@@ -42,7 +42,12 @@
 
         <el-row>
           <el-col class="text-center m-2">
-            <el-button type="primary" size="small" @click="miBrushStep()">
+            <el-button
+              type="primary"
+              size="small"
+              :loading="btnLoading.brushStep"
+              @click="miBrushStep()"
+            >
               刷步
             </el-button>
           </el-col>
@@ -93,7 +98,8 @@ export default {
       password: "",
       step: "",
       auto: false,
-      brushStepLatest: []
+      brushStepLatest: [],
+      btnLoading: { brushStep: false }
     };
   },
   watch: {},
@@ -116,9 +122,10 @@ export default {
         step: this.step,
         auto: this.auto
       };
-      console.log(params);
+      this.btnLoading.brushStep = true;
       miBrushStep(params)
         .then(resp => {
+          this.btnLoading.brushStep = false;
           this.$message.success(resp.msg);
           localStorage.setItem("lab.mi.step.phone", this.phone);
           localStorage.setItem("lab.mi.step.password", this.password);
@@ -126,6 +133,7 @@ export default {
           localStorage.setItem("lab.mi.step.auto", this.auto);
         })
         .catch(err => {
+          this.btnLoading.brushStep = false;
           console.log(err);
         });
     },
