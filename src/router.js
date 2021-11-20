@@ -9,6 +9,7 @@ import WMIndex from "./views/wm/index";
 import WsChat from "./views/wsChat/index";
 import MiStep from "./views/mi/step";
 import VideoParse from "./views/free/videoparse/index";
+import OfficeIndex from "./views/office/index";
 
 Vue.use(Router);
 
@@ -78,6 +79,14 @@ export default new Router({
       name: "VideoParse",
       meta: {
         title: "视频解析"
+      }
+    },
+    {
+      path: "/office",
+      component: OfficeIndex,
+      name: "OfficeIndex",
+      meta: {
+        title: "办公工具"
       }
     }
   ]
