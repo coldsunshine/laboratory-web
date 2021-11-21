@@ -10,6 +10,9 @@
           <el-tab-pane label="office文档转pdf" name="tab_office2pdf">
             <office2pdf></office2pdf>
           </el-tab-pane>
+          <el-tab-pane label="OCR图片识别文字" name="tab_ocr">
+            <ocr></ocr>
+          </el-tab-pane>
         </el-tabs>
       </el-col>
     </el-row>
@@ -18,9 +21,10 @@
 
 <script>
 import office2pdf from "@/views/office/office2pdf";
+import ocr from "@/views/office/ocr";
 export default {
   name: "OfficeIndex",
-  components: { office2pdf },
+  components: { office2pdf, ocr },
   data() {
     return {
       activeName: "tab_office2pdf"

@@ -24,7 +24,7 @@
           size="mini"
           type="primary"
           @click="toPdf"
-          >点击转换
+          >点击试别
         </el-button>
       </div>
     </div>
@@ -33,7 +33,7 @@
       <el-card class="box-card">
         <!-- card header -->
         <div slot="header" class="clearfix">
-          <span>文件列表</span>
+          <span>识别结果</span>
           <el-tooltip content="刷新" placement="top">
             <el-button
               class="float-right p-2"
@@ -164,21 +164,12 @@
                     </div>
 
                     <!-- 操作 -->
-                    <div v-if="f.attachment" class="text-xs my-2">
+                    <div v-if="f.text" class="text-xs my-2">
                       <span>
-                        <i class="el-icon-s-operation mr-2"></i>
-                        <span class="relative bottom-0.5">
-                          <el-tooltip content="下载" placement="top">
-                            <el-link
-                              :href="
-                                f.attachment.domain + '/' + f.attachment.url
-                              "
-                              :underline="false"
-                            >
-                              <i class="el-icon-download"></i>
-                            </el-link>
-                          </el-tooltip> </span
-                      ></span>
+                        <i class="el-icon-receiving mr-2"></i>
+                        <span class="relative bottom-0.5"> </span>
+                        {{ f.text }}
+                      </span>
                     </div>
 
                     <!-- 虚线 分割线 -->
@@ -203,7 +194,7 @@
 
 <script>
 import { baseUrl } from "../../../config/env";
-import { toPdf, get2pdfTaskList } from "@/api/free/office";
+import { ocr, getOCRTaskList } from "@/api/free/office";
 
 export default {
   name: "Office2pdf",
@@ -211,7 +202,7 @@ export default {
     return {
       upload: {
         loading: false,
-        url: baseUrl + "/free/doc/2pdf",
+        url: baseUrl + "/free/doc/ocr",
         // 最终要上传的文件列表
         fileData: ""
       },
@@ -220,7 +211,7 @@ export default {
 
       // 缓存key
       cache: {
-        taskIds: "off2pdf-taskId"
+        taskIds: "ocr-taskId"
       },
       getTask: {
         loading: false,
@@ -246,7 +237,7 @@ export default {
       });
       // 上传期间清除定时器
       clearInterval(this.getTask.interval);
-      toPdf(form)
+      ocr(form)
         .then(response => {
           this.$message.success("上传成功，稍后刷新文件列表查看");
           this.$refs.ref_toPdf_upload.clearFiles();
@@ -297,7 +288,7 @@ export default {
         return;
       }
       this.getTask.loading = true;
-      get2pdfTaskList(JSON.parse(taskIds))
+      getOCRTaskList(JSON.parse(taskIds))
         .then(resp => {
           this.taskList = resp.data;
 
