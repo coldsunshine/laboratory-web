@@ -37,101 +37,159 @@
           <el-tooltip content="刷新" placement="top">
             <el-button
               class="float-right p-2"
+              :class="{ 'animate-spin': getTask.loading == true }"
               type="text"
               icon="el-icon-refresh"
-              @click="getFileList"
+              @click="getTaskList()"
             ></el-button>
           </el-tooltip>
-          <el-tooltip content="清空" placement="top">
-            <el-button
-              class="float-right p-2"
-              type="text"
-              icon="el-icon-delete"
-              @click="rmFileCache"
-            ></el-button>
-          </el-tooltip>
+
+          <el-popconfirm
+            confirm-button-text="好的"
+            icon="el-icon-info"
+            icon-color="red"
+            title="确定清除本地文件缓存么？"
+            @confirm="rmTaskIdCache()"
+          >
+            <el-tooltip slot="reference" content="清空" placement="top">
+              <el-button
+                class="float-right p-2"
+                type="text"
+                icon="el-icon-delete"
+              ></el-button>
+            </el-tooltip>
+          </el-popconfirm>
         </div>
 
         <!-- card body -->
         <div>
           <div v-if="taskList.length > 0">
-            <div v-for="e in taskList" :key="e.taskId" class="my-2">
-              <div>
-                <div>
-                  本次一共{{ e.fileInfos.length }}个文件
-                  <el-tooltip content="等待运行" placement="top">
-                    <i
-                      v-if="e.state == 'INIT'"
-                      class="el-icon-remove-outline"
-                      style="color: #909399"
-                    ></i>
-                  </el-tooltip>
-                  <el-tooltip content="运行中" placement="top">
-                    <i
-                      v-if="e.state == 'RUNNING'"
-                      class="el-icon-loading"
-                      style="color: #409EFF"
-                    ></i>
-                  </el-tooltip>
-                  <el-tooltip content="部分转换成功" placement="top">
-                    <i
-                      v-if="e.state == 'PART_SUCCESS'"
-                      class="el-icon-circle-check"
-                      style="color: #E6A23C"
-                    ></i>
-                  </el-tooltip>
-                  <el-tooltip content="成功" placement="top">
-                    <i
-                      v-if="e.state == 'SUCCESS'"
-                      class="el-icon-circle-check"
-                      style="color: #67C23A"
-                    ></i>
-                  </el-tooltip>
-                  <el-tooltip content="全部失败" placement="top">
-                    <i
-                      v-if="e.state == 'FAIL'"
-                      class="el-icon-circle-close"
-                      style="color: #F56C6C"
-                    ></i>
-                  </el-tooltip>
-                </div>
-                <div></div>
-              </div>
-              <div
-                v-for="(f, index) in e.fileInfos"
-                :key="f.fileName"
-                class="my-2"
-              >
-                <!-- 名称 -->
-                <div class="text-xs">
-                  <span>
-                    <i class="el-icon-document mr-2"></i>{{ f.fileName }}
-                  </span>
-                  <span class="ml-4">
-                    <el-tooltip content="下载" placement="top">
-                      <el-link
-                        v-if="f.attachment"
-                        :href="f.attachment.domain + '/' + f.attachment.url"
-                        :underline="false"
-                      >
-                        <i class="el-icon-download"></i>
-                      </el-link>
-                    </el-tooltip>
-                  </span>
-                </div>
-                <!-- 备注 -->
-                <div class="text-xs">
-                  <i class="el-icon-info mr-2"></i>{{ f.remark }}
-                </div>
-                <div
-                  v-if="index != e.fileInfos.length - 1"
-                  class="w-full my-4  border-dashed border-t-2 border-light-blue-500"
-                >
-                  <div></div>
-                </div>
-              </div>
-              <el-divider class=""></el-divider>
-            </div>
+            <el-collapse accordion>
+              <el-collapse-item v-for="e in taskList" :key="e.taskId">
+                <template slot="title">
+                  <div>
+                    <div>
+                      一共{{ e.fileInfos.length }}个文件，耗时{{
+                        e.consumingTime / 1000
+                      }}秒
+                      <el-tooltip content="等待运行" placement="top">
+                        <i
+                          v-if="e.state == 'INIT'"
+                          class="el-icon-remove-outline"
+                          style="color: #909399"
+                        ></i>
+                      </el-tooltip>
+                      <el-tooltip content="运行中" placement="top">
+                        <i
+                          v-if="e.state == 'RUNNING'"
+                          class="el-icon-loading"
+                          style="color: #409EFF"
+                        ></i>
+                      </el-tooltip>
+                      <el-tooltip content="部分转换成功" placement="top">
+                        <i
+                          v-if="e.state == 'PART_SUCCESS'"
+                          class="el-icon-circle-check"
+                          style="color: #E6A23C"
+                        ></i>
+                      </el-tooltip>
+                      <el-tooltip content="成功" placement="top">
+                        <i
+                          v-if="e.state == 'SUCCESS'"
+                          class="el-icon-circle-check"
+                          style="color: #67C23A"
+                        ></i>
+                      </el-tooltip>
+                      <el-tooltip content="全部失败" placement="top">
+                        <i
+                          v-if="e.state == 'FAIL'"
+                          class="el-icon-circle-close"
+                          style="color: #F56C6C"
+                        ></i>
+                      </el-tooltip>
+                    </div>
+                  </div>
+                </template>
+
+                <!-- 本次任务的文件列表 -->
+                <template>
+                  <div
+                    v-for="(f, index) in e.fileInfos"
+                    :key="f.fileName"
+                    class="my-2"
+                  >
+                    <!-- 名称 -->
+
+                    <div class="text-xs my-2">
+                      <el-tooltip content="原文件名称" placement="top">
+                        <span>
+                          <i class="el-icon-document mr-2"></i>
+                          {{ f.fileName }}
+                        </span>
+                      </el-tooltip>
+                    </div>
+                    <!-- 结束时间 -->
+                    <div class="text-xs my-2">
+                      <el-tooltip content="完成时间" placement="top">
+                        <span>
+                          <i class="el-icon-time mr-2"></i>
+                          <span v-if="f.startTime && f.endTime">{{
+                            f.endTime
+                          }}</span>
+                          <span v-else> - </span>
+                        </span>
+                      </el-tooltip>
+                    </div>
+
+                    <!-- 耗时 -->
+                    <div class="text-xs my-2">
+                      <el-tooltip content="耗时" placement="top">
+                        <span>
+                          <i class="el-icon-timer mr-2"></i>
+                          <span v-if="f.consumingTime">{{
+                            f.consumingTime / 1000
+                          }}</span>
+                          <span v-else> - </span>
+                        </span>
+                      </el-tooltip>
+                    </div>
+
+                    <!-- 备注 -->
+                    <div class="text-xs my-2">
+                      <el-tooltip content="说明" placement="top">
+                        <span>
+                          <i class="el-icon-info mr-2"></i>{{ f.remark }}
+                        </span>
+                      </el-tooltip>
+                    </div>
+
+                    <!-- 操作 -->
+                    <div v-if="f.attachment" class="text-xs my-2">
+                      <span>
+                        <i class="el-icon-s-operation mr-2"></i>
+                        <span class="relative bottom-0.5">
+                          <el-tooltip content="下载" placement="top">
+                            <el-link
+                              :href="
+                                f.attachment.domain + '/' + f.attachment.url
+                              "
+                              :underline="false"
+                            >
+                              <i class="el-icon-download"></i>
+                            </el-link>
+                          </el-tooltip> </span
+                      ></span>
+                    </div>
+
+                    <!-- 虚线 分割线 -->
+                    <div
+                      v-if="index != e.fileInfos.length - 1"
+                      class="w-full my-4  border-dashed border-t-2 border-light-blue-500"
+                    ></div>
+                  </div>
+                </template>
+              </el-collapse-item>
+            </el-collapse>
           </div>
           <!-- 无数据显示 -->
           <div v-else>
@@ -152,9 +210,7 @@ export default {
   data() {
     return {
       upload: {
-        // 加载动画
-        isUploading: false,
-        // 上传的地址
+        loading: false,
         url: baseUrl + "/free/doc/2pdf",
         // 最终要上传的文件列表
         fileData: ""
@@ -165,26 +221,31 @@ export default {
       // 缓存key
       cache: {
         taskIds: "off2pdf-taskId"
+      },
+      getTask: {
+        loading: false,
+        interval: null
       }
     };
   },
   created() {
-    this.getFileList();
-    setInterval(() => {
-      this.getFileList();
-    }, 2000);
+    this.setGetTaskInterval();
   },
   methods: {
     toPdf() {
+      // 先取出elementUI中upload组件中的文件
       let { uploadFiles } = this.$refs.ref_toPdf_upload;
       if (uploadFiles.length == 0) {
         this.$message.warning("请先选择文件");
         return;
       }
+      // formData数据
       let form = new FormData();
       uploadFiles.forEach(item => {
         form.append("fileList", item.raw);
       });
+      // 上传期间清除定时器
+      clearInterval(this.getTask.interval);
       toPdf(form)
         .then(response => {
           this.$message.success("上传成功，稍后刷新文件列表查看");
@@ -200,7 +261,8 @@ export default {
         })
         .catch(e => {
           console.log(e);
-        });
+        })
+        .finally(() => this.setGetTaskInterval());
     },
     // :http-request 覆盖默认的上传行为
     uploadFile(file) {
@@ -229,22 +291,41 @@ export default {
     onExceed() {
       this.$message.warning("最多同时上传3个文件哦");
     },
-    getFileList() {
+    getTaskList() {
       let taskIds = localStorage.getItem(this.cache.taskIds);
       if (!taskIds) {
         return;
       }
+      this.getTask.loading = true;
       get2pdfFileList(JSON.parse(taskIds))
         .then(resp => {
           this.taskList = resp.data;
+
+          // 都完成的话清除定时器
+          let unfinished =
+            this.taskList.filter(t => t.state == "INIT" || t.state == "RUNNING")
+              .length > 0;
+          if (!unfinished) {
+            clearInterval(this.getTask.interval);
+          }
         })
         .catch(e => {
           console.log(e);
+        })
+        .finally(() => {
+          this.getTask.loading = false;
         });
     },
-    rmFileCache() {
+    // 删除本地缓存
+    rmTaskIdCache() {
       localStorage.removeItem(this.cache.taskIds);
       this.taskList = [];
+    },
+    setGetTaskInterval() {
+      this.getTaskList();
+      this.getTask.interval = setInterval(() => {
+        this.getTaskList();
+      }, 2000);
     }
   }
 };
