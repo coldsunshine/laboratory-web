@@ -8,10 +8,10 @@
         <el-col :md="8">&zwj;</el-col>
         <el-col :md="8">
           <el-tabs v-model="activeName" stretch @tab-click="handleClick">
-            <el-tab-pane label="京东" name="tab_jd">
-              <!-- <jd /> -->
-              <JdChrome />
-            </el-tab-pane>
+            <!--            <el-tab-pane label="京东" name="tab_jd">-->
+            <!--              &lt;!&ndash; <jd /> &ndash;&gt;-->
+            <!--              <JdChrome />-->
+            <!--            </el-tab-pane>-->
             <el-tab-pane label="联通" name="tab_chinaUnicom">
               <unicom />
             </el-tab-pane>
@@ -24,17 +24,15 @@
 
 <script>
 // import jd from "./jd";
-import JdChrome from "./jdChrome";
 import unicom from "./unicom";
 
 export default {
   components: {
-    JdChrome,
     unicom
   },
   data() {
     return {
-      activeName: "tab_jd"
+      activeName: "tab_chinaUnicom"
     };
   },
   methods: {
