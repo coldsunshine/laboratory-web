@@ -1,12 +1,12 @@
 /**** 京东 ****/
 import http from "@/utils/http";
 
-export function qrCode() {
-  return http.get("/jd/qrCode");
+export function sendSms(mobile) {
+  return http.get("/jd/smsCode?mobile=" + mobile);
 }
 
-export function check(params) {
-  return http.postJson("/jd/check", params);
+export function login(params) {
+  return http.postJson("/jd/login", params);
 }
 
 export function chromeSendSmsCode(params) {

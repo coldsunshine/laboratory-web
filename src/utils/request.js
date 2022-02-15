@@ -44,7 +44,9 @@ service.interceptors.response.use(
     return response.data;
   },
   error => {
-    Message.error("网络异常");
+    let data = error.response.data;
+    let msg = data.msg;
+    Message.error(msg);
     return Promise.resolve(error);
   }
 );

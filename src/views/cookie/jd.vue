@@ -2,30 +2,33 @@
   <div class="more-container">
     <el-row class="row-space">
       <el-col>
-        <el-button type="primary" size="small" @click="generateQrCode()"
-          >生成二维码
-        </el-button>
-      </el-col>
-    </el-row>
-
-    <el-row class="row-space">
-      <el-col>
-        <el-image
-          v-if="jdInfo.qrCodeBase64"
-          style="width: 300px; height: 300px"
-          :src="'data:image/png;base64,' + jdInfo.qrCodeBase64"
-          fit="fit"
-        />
+        <el-form label-width="80px">
+          <el-form-item label="手机号">
+            <el-input v-model="form.mobile"></el-input>
+          </el-form-item>
+          <el-form-item label="验证码">
+            <el-input v-model="form.code"></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="text-center"></div>
+        <div class="text-center row-space">
+          <el-button type="primary" size="small" @click="sendSms()">
+            发送验证码
+          </el-button>
+          <el-button type="primary" size="small" @click="login()">
+            登陆
+          </el-button>
+        </div>
       </el-col>
     </el-row>
 
     <el-row class="row-space">
       <el-col>
         <el-input
-          v-if="cookieVisible"
+          v-if="jdInfo.cookie"
           v-model="jdInfo.cookie"
           type="textarea"
-          rows="3"
+          rows="5"
         />
       </el-col>
     </el-row>
@@ -33,41 +36,34 @@
 </template>
 
 <script>
-import { qrCode, check } from "@/api/jd/jd.js";
+import { sendSms, login } from "@/api/jd/jd.js";
 
 export default {
   data() {
     return {
-      jdInfo: {},
-      cookieVisible: false,
-      checkInterval: ""
+      form: {
+        mobile: "",
+        code: ""
+      },
+      jdInfo: {
+        cookie: ""
+      },
+      cookieVisible: false
     };
   },
   methods: {
-    generateQrCode() {
-      clearInterval(this.checkInterval);
+    sendSms() {
       this.cookieVisible = false;
-      qrCode()
+      sendSms(this.form.mobile)
         .then(resp => {
-          this.jdInfo = resp.data;
           this.$message.success(resp.msg);
-          this.check();
         })
-        .catch(() => {
-          clearInterval(this.checkInterval);
-        });
+        .catch(() => {});
     },
-    check() {
-      this.checkInterval = setInterval(() => {
-        check(this.jdInfo).then(resp => {
-          let code = resp.code;
-          if (code == 0) {
-            clearInterval(this.checkInterval);
-            this.jdInfo = resp.data;
-            this.cookieVisible = true;
-          }
-        });
-      }, 3000);
+    login() {
+      login(this.form).then(resp => {
+        this.jdInfo.cookie = resp.data.cookie;
+      });
     }
   }
 };
